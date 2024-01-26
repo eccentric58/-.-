@@ -6,7 +6,7 @@ public class Iguana extends Reptile {
 
 	@Override
 	public boolean canDropTheTail() {
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 }

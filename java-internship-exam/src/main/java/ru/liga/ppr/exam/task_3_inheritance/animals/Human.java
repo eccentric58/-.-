@@ -1,5 +1,10 @@
 package ru.liga.ppr.exam.task_3_inheritance.animals;
 
-public class Human {
+import ru.liga.ppr.exam.task_3_inheritance.abstractions.Mammal;
 
+public class Human extends Mammal {
+    @Override
+    public int countOfVertebra() {
+        return 33;
+    }
 }

@@ -4,7 +4,7 @@ public abstract class Mammal implements Vertebrates {
 
 	@Override
 	public int countOfVertebra() {
-		return 23;
+		return 33;
 	}
 
 }

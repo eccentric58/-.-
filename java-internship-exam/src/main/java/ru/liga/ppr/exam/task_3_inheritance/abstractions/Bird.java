@@ -8,7 +8,7 @@ public abstract class Bird implements Vertebrates {
 
 	@Override
 	public final int countOfVertebra() {
-		throw new UnsupportedOperationException();
+		return 50;
 	}
 
 }
