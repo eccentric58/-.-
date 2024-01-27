@@ -15,10 +15,25 @@ public class ComputerDAO {
 	public SqlRowSet getMFUProducers(String type) {
 		return jdbcTemplate.queryForRowSet(
 				"""
-						SELECT producer as "producer"
-          	FROM Goods
-          	WHERE type=:type
-						""", Map.of("type", type));
+SELECT DISTINCT g.producer
+FROM Goods g
+WHERE g.type = :type
+AND EXISTS (
+  SELECT 1
+  FROM Computer c
+  WHERE c.model = g.model
+  AND c.price = (
+    SELECT MIN(price) FROM Computer
+  )
+  AND c.frequency = (
+    SELECT MAX(frequency)
+    FROM Computer
+    WHERE price = (
+      SELECT MIN(price) FROM Computer
+    )
+  )
+)
+""", Map.of("type", type));
 	}
-
+// проходит 2 теста из 3
 }

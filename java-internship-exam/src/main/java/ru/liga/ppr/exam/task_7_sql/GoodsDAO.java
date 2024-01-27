@@ -12,12 +12,14 @@ public class GoodsDAO {
 
 	private final NamedParameterJdbcTemplate jdbcTemplate;
 
-	public SqlRowSet getComputerWithFrequencyMoreThen(int frequency) {
+
+    public SqlRowSet getComputerWithFrequencyMoreThen(int frequency) {
 			return jdbcTemplate.queryForRowSet(
 					"""
-							SELECT '' as "producer"
-							FROM computer
-							WHERE computer.frequency >= :frequency
+							SELECT distinct g.producer
+							FROM computer c
+							JOIN goods g ON c.model = g.model
+							WHERE c.frequency >= :frequency and g.type = 'Computer'
 							ORDER BY producer DESC""", Map.of("frequency", frequency));
 	}
 
